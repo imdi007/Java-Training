@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>EMS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<style>
+body,h1 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+  background-image: url("./images/background-balance-commerce-583846.jpg");
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+.container1{
+position:absolute;
+   top:200px;
+   right:100px;
+opacity: 0.7;
+  filter: alpha(opacity=10); /* For IE8 and earlier */	;
+  background-color: #000000;
+  width: 1150px;
+  height: 435px;
+}
+
+.square {
+position:absolute;
+   top:10px;
+   right:100px;
+opacity: 0.8;
+  filter: alpha(opacity=10); /* For IE8 and earlier */	;
+  background-color: #000000;
+  width: 940px;
+  height: 94px;
+}
+.purple-square {
+position:absolute;
+   top:110px;
+   right:100px;
+opacity: 0.8;
+  filter: alpha(opacity=10); /* For IE8 and earlier */	;
+  background-color: #000000;
+  width: 1150px;
+  height: 40px;
+}
+
+.create-btn{
+    z-index: 9999999999;
+    margin-right: 100px;
+    float: right;
+    margin-top: 156px;
+    }
+
+    .footer {
+   position: fixed;
+   left: 46px;
+   bottom: 0;
+   width: 1150px;
+   opacity:0.8;
+   background-color: black;
+   color: white;
+   text-align: center;
+}
+</style>
+<body>
+
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+  <div class="w3-display-topleft w3-padding-large w3-xlarge">
+      <img th:src="@{./images/ems_logo.png}" style="width:230px;height:90px" alt="logo" align="top"/>
+  </div>
+
+
+    <div class="square">
+        <h1 align="center">Employee</h1>
+
+    </div>
+
+    <div class="purple-square">
+        <ul class="nav nav-pills nav-justified">
+            <li><a href="/lg">HOME</a></li>
+            <li class="active"> <a href="/employee">EMPLOYEE</a></li>
+            <li><a href="/projects">PROJECTS</a></li>
+            <li><a href="/tasks">TASKS</a></li>
+            <li><a href="/operations">OPERATIONS</a></li>
+        </ul>
+
+    </div>
+    <div class="create-btn">
+
+        <a th:href="@{/create-employee}"> <button  type="submit" class="btn btn-primary">Add Employee</button></a>
+
+    </div>
+<div class="container1">
+
+    <div>
+        <form name="fetch-employees" th:action="@{/employees}" th:formmethod="POST">
+
+        </form>
+    </div>
+    <div th:unless="${error==null}">
+        <table class="table">
+            <thead>
+            <tr>
+                <td>Status code</td>
+                <td>Error</td>
+            </tr>
+            </thead>
+
+            <tr>
+                <td><span th:text="${error.statusCode}"></span></td>
+                <td><span th:text="${error.body}"></span></td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div th:if="${error==null}">
+
+        <table class="table">
+
+            <thead>
+            <tr style="font-size:18px">
+                <td>EMPLOYEE ID</td>
+                <td>FIRST NAME</td>
+                <td>LAST NAME</td>
+                <td>EMPLOYEE NUMBER</td>
+                <td></td>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr th:each="employee: ${employees}">
+                <td><span th:text="${employee.emId}"></span></td>
+                <td><span th:text="${employee.emFirstName}"></span></td>
+                <td><span th:text="${employee.emLastName}"></span>
+                <td><span th:text="${employee.emNo}"></span> </td>
+                <td>   <a th:href="@{/employees/{id}(id=${employee.emId})}"> <button  type="submit" class="btn btn-primary">view</button></a></td>
+
+
+            </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+
+
+
+
+
+</div>
+</div>
+
+    
+  </div>
+
+
+
+
+  <div class="footer">
+      <p> &copy; EMS 2019</p>
+  </div>
+</div>
+
+</body>
+</html>
+
