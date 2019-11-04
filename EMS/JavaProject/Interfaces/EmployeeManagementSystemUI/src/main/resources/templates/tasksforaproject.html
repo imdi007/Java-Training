@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<head xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-    <head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
 <title>EMS</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,22 +8,19 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-
-
-    <link rel="stylesheet" th:href="@{/css/styleMe.css}">
-
+<link rel="stylesheet" th:href="@{/css/styleMe.css}">
 </head>
 <body>
 
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
   <div class="logo">
-      <img th:src="@{./images/ems_logo.png}" style="width:230px;height:90px" alt="logo" align="top"/>
+      <img th:src="@{
+      /images/ems_logo.png}" style="width:230px;height:90px" alt="logo" align="top"/>
   </div>
 
 
     <div class="square">
-        <h1 align="center">TASKS</h1>
+        <h1 align="center">PROJECT TASKS</h1>
 
     </div>
 
@@ -32,20 +29,22 @@
             <li><a href="/lg">HOME</a></li>
             <li> <a href="/employee">EMPLOYEE</a></li>
             <li><a href="/projects">PROJECTS</a></li>
-            <li class="active"><a href="/tasks">TASKS</a></li>
-            <li sec:authorize="hasRole('ROLE_manager')"><a href="/projectwithtasks">OPERATIONS</a></li>
+            <li><a href="/tasks">TASKS</a></li>
+            <li class="active"><a href="/projectwithtasks">OPERATIONS</a></li>
         </ul>
 
     </div>
-    <div class="create-btn">
 
-        <a sec:authorize="hasRole('ROLE_manager')" th:href="@{/create-task}"> <button  type="submit" class="btn btn-primary">Add Task</button></a>
+    <div class="back-btn">
+
+        <a th:href="@{/employee}"> <button  type="submit" class="btn btn-primary">Back</button></a>
 
     </div>
+
 <div class="container1">
 
     <div>
-        <form name="fetch-employees" th:action="@{/tasks}" th:formmethod="POST">
+        <form name="fetch-employees" th:action="@{/employees}" th:formmethod="POST">
 
         </form>
     </div>
@@ -72,20 +71,15 @@
 
             <thead>
             <tr style="font-size:18px">
-                <td>TASK ID</td>
-                <td>TASK NAME</td>
+                <td>PROJECT NAME</td>
+
                 <td></td>
             </tr>
             </thead>
 
             <tbody>
-
-            <tr th:each="task: ${tasks}">
-                <td><span th:text="${task.taId}"></span></td>
-                <td><span th:text="${task.taName}"></span></td>
-
-                <td align="right"><a th:href="@{/tasks/{id}(id=${task.taId})}"> <button  type="submit" class="btn btn-primary">view</button></a></td>
-
+<tr th:each="project: ${projectName}">
+    <td><span th:href="@{/projectwithtaskwithemployee/{id}/{id1}(id=${employeeId},id1=${project})}" th:text="${project}"></span></td>
 
 
             </tr>
@@ -115,4 +109,104 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

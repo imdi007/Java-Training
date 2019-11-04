@@ -38,6 +38,7 @@ public class UIController extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/").permitAll()
                 .antMatchers("/images/**")
                 .permitAll()
+                .antMatchers("/css/**").permitAll()
                 .anyRequest().authenticated().and().logout().logoutSuccessUrl("/").deleteCookies("KSESSIONID", "JSESSIONID").invalidateHttpSession(true);
     }
     @RequestMapping(value = "/")
@@ -51,6 +52,11 @@ public class UIController extends WebSecurityConfigurerAdapter {
     @RequestMapping(value = "/create-employee")
     public String loadCreateEmployee(){
         return "addEmployee";
+    }
+
+    @RequestMapping("/tasksforaproject")
+    public String tasksforaproject(){
+        return "tasksforaproject";
     }
 
     @RequestMapping(value = "/employee",method = RequestMethod.GET)
